@@ -15,6 +15,7 @@ OPTIONS AND ARGUMENTS
 	RATE 			Speaking rate of the whole text, either "x-slow", "slow", "medium", "fast" or "x-fast"
 				(default: slow)
 MARKUP FORMAT
+	See Example/ directory for a look at a fully marked-up text and its resulting SSML.
 	Each newline delimits a paragraph, marked ith <p> tags. 
 	Here are the SSML tags and their corresponding markup:
 		<prosody rate="slow">...</prosody>
