@@ -1,0 +1,45 @@
+(Frankly it's not the cleanest script ever... but it does the job very well.)
+
+markup2ssml.sh v20230929
+	Format a marked up text for proper speech synthesis with SSML for Amazon Polly. 
+REQUIREMENTS
+	sed
+USAGE
+	markup2ssml.sh FILES... [--output|-o OUTFILE] [-b BREAK_TIME] [-r BREAK_TIME]
+OPTIONS AND ARGUMENTS
+	OUTFILE 		filename of output file (overwrite if existing)
+				(default: {INPUT_FILENAME}.ssml)
+	BREAK_TIME 		duration of pauses between paragraphs, in seconds or milliseconds.
+				(format: "{number}{s|ms}")
+				(default: 1s)
+	RATE 			Speaking rate of the whole text, either "x-slow", "slow", "medium", "fast" or "x-fast"
+				(default: slow)
+MARKUP FORMAT
+	Each newline delimits a paragraph, marked ith <p> tags. 
+	Here are the SSML tags and their corresponding markup:
+		<prosody rate="slow">...</prosody>
+			↳	{...{
+		<prosody rate="fast">...</prosody>
+			↳	}...}
+		<prosody volume="soft">...</prosody>
+			↳ 	_..._
+		<prosody volume="loud">...</prosody>
+			↳ 	*...*
+		<s>
+			↳ 	|...|
+		<break time=XXs/>
+			↳ 	#XX
+			If a line starts with #, it will not be marked as a paragraph.
+	(The following are not yet implemented:)
+		<prosody pitch="±XX%">...</prosody>
+			↳ 	=±XX...=
+		<lang xml:lang="xx-XX">...</lang>
+			↳ 	`xx-XX...`
+		<phoneme alphabet="ipa" ph="XXX">...</phoneme>
+			↳ 	~XXX...~
+EXAMPLE
+	$ markup2ssml.sh nietzsche-genealogy-of-morals.txt -o GoM-ssml.txt
+AUTHOR
+	Written by Sylvain Saubier
+REPORTING BUGS
+	Mail at: <feedback@sylsau.com>
