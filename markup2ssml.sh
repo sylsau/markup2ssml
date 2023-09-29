@@ -149,6 +149,8 @@ $SED 's/^\([^#].\+\)$/<p>\1<\/p>/ ;
 	s/<\/p>/<\/p><break time="'$OPT_PARA_BREAK'"\/>/ ;
 	1i<speak><prosody rate="'$OPT_RATE'">\n' \
 	$INFILE > $OPT_OUTFILE && echo -e "\n</prosody></speak>" >> $OPT_OUTFILE
+
+grep -q '&' $OPT_OUTFILE && m_say "warning: your text contains ampersand '&' characters, which are not supported by SSML!"
 m_say "all done!"
 
 exit
