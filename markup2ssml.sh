@@ -147,7 +147,7 @@ $SED 's/^\([^#].\+\)$/<p>\1<\/p>/ ;
 	s/|\([^|]\+\)|/<s>\1<\/s>/g ;
 	s/#\(\w\+\)/<break time="\1"\/>/g ;
 	s/<\/p>/<\/p><break time="'$OPT_PARA_BREAK'"\/>/ ;
-	1i<speak><prosody rate="'$OPT_RATE'>\n' \
+	1i<speak><prosody rate="'$OPT_RATE'">\n' \
 	$INFILE > $OPT_OUTFILE && echo -e "\n</prosody></speak>" >> $OPT_OUTFILE
 m_say "all done!"
 
